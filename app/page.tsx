@@ -237,21 +237,6 @@ export default function Home() {
 
           <div className="projects-grid">
             <motion.article className="project-card project-featured" {...fadeUp}>
-              <a
-                className="project-visual planv-visual"
-                href="https://www.planificacionv.com/"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Abrir Plan V"
-              >
-                <div className="project-browser">
-                  <div className="project-browser-bar"><span/><span/><span/></div>
-                  <img
-                    src="https://www.planificacionv.com/_next/image?q=75&url=%2Fhero-planv.png&w=3840"
-                    alt="Página principal de Plan V"
-                  />
-                </div>
-              </a>
               <div className="project-info">
                 <div className="project-topline"><span>Proyecto en producción</span><span>01</span></div>
                 <h3>Plan V</h3>
