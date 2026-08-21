@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import './project3d.css'
 import './portfolio-upgrades.css'
+import './icon-fixes.css'
 
 export const metadata: Metadata = {
   title: 'Nazareno Facchin | Full Stack Developer',
