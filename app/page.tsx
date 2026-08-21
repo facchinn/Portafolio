@@ -1,6 +1,9 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
+
+const TechScene = dynamic(() => import('./components/TechScene'), { ssr: false })
 
 const navItems = [
   ['Inicio', '#inicio'],
@@ -8,22 +11,23 @@ const navItems = [
   ['Experiencia', '#experiencia'],
   ['Proyectos', '#proyectos'],
   ['Stack', '#stack'],
+  ['3D Lab', '#lab'],
   ['Contacto', '#contacto'],
 ]
 
-const stack = [
-  'React',
-  'Next.js',
-  'TypeScript',
-  'JavaScript',
-  'Node.js',
-  'Express',
-  'MySQL',
-  'MongoDB',
-  'REST APIs',
-  'Git',
-  'GitHub',
-  'Azure',
+const skills = [
+  { name: 'React', group: 'Frontend', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg' },
+  { name: 'Next.js', group: 'Frontend', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg', dark: true },
+  { name: 'TypeScript', group: 'Language', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg' },
+  { name: 'JavaScript', group: 'Language', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg' },
+  { name: 'Node.js', group: 'Backend', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg' },
+  { name: 'Express', group: 'Backend', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg', dark: true },
+  { name: 'MySQL', group: 'Database', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg' },
+  { name: 'MongoDB', group: 'Database', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg' },
+  { name: 'Git', group: 'Tools', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg' },
+  { name: 'GitHub', group: 'Tools', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg', dark: true },
+  { name: 'Azure', group: 'Cloud', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azure/azure-original.svg' },
+  { name: 'C#', group: 'Language', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg' },
 ]
 
 const fadeUp = {
@@ -67,14 +71,10 @@ export default function Home() {
           </a>
           <div className="nav-links">
             {navItems.map(([label, href]) => (
-              <a key={href} href={href}>
-                {label}
-              </a>
+              <a key={href} href={href}>{label}</a>
             ))}
           </div>
-          <a className="nav-cta" href="#contacto">
-            Hablemos
-          </a>
+          <a className="nav-cta" href="#contacto">Hablemos</a>
         </nav>
       </header>
 
@@ -89,35 +89,19 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65 }}
           >
-            <div className="status-pill">
-              <span /> Disponible para nuevas oportunidades
-            </div>
+            <div className="status-pill"><span /> Disponible para nuevas oportunidades</div>
             <p className="eyebrow">Hola, soy Nazareno Facchin</p>
-            <h1>
-              Desarrollo productos web <span>de punta a punta.</span>
-            </h1>
+            <h1>Desarrollo productos web <span>de punta a punta.</span></h1>
             <p className="hero-text">
               Full Stack Developer enfocado en crear aplicaciones claras, rápidas y mantenibles,
               trabajando desde la interfaz hasta el backend, la base de datos y producción.
             </p>
             <div className="hero-actions">
-              <a className="button button-primary" href="#proyectos">
-                Ver proyectos <ArrowIcon />
-              </a>
-              <a
-                className="button button-secondary"
-                href="https://github.com/facchinn"
-                target="_blank"
-                rel="noreferrer"
-              >
+              <a className="button button-primary" href="#proyectos">Ver proyectos <ArrowIcon /></a>
+              <a className="button button-secondary" href="https://github.com/facchinn" target="_blank" rel="noreferrer">
                 <GithubIcon /> GitHub
               </a>
-              <a
-                className="button button-secondary"
-                href="https://www.linkedin.com/in/nazafacchin"
-                target="_blank"
-                rel="noreferrer"
-              >
+              <a className="button button-secondary" href="https://www.linkedin.com/in/nazafacchin" target="_blank" rel="noreferrer">
                 <LinkedinIcon /> LinkedIn
               </a>
             </div>
@@ -129,12 +113,7 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.1 }}
           >
-            <div className="window-bar">
-              <span />
-              <span />
-              <span />
-              <small>portfolio.tsx</small>
-            </div>
+            <div className="window-bar"><span /><span /><span /><small>portfolio.tsx</small></div>
             <div className="code-card">
               <p><b>const</b> developer = {'{'}</p>
               <p className="indent">name: <i>&apos;Nazareno Facchin&apos;</i>,</p>
@@ -146,9 +125,7 @@ export default function Home() {
               <p className="indent">experience: <strong>&apos;5+ years&apos;</strong></p>
               <p>{'}'}</p>
             </div>
-            <div className="panel-footer">
-              <span>React</span><span>Next.js</span><span>Node.js</span><span>TypeScript</span>
-            </div>
+            <div className="panel-footer"><span>React</span><span>Next.js</span><span>Node.js</span><span>TypeScript</span></div>
           </motion.div>
         </div>
 
@@ -176,11 +153,27 @@ export default function Home() {
               hardware y automatización me permite mirar los proyectos desde una perspectiva más amplia
               que solamente la interfaz.
             </p>
-            <div className="mini-tags">
-              <span>Argentina</span><span>Trabajo remoto</span><span>Open to work</span>
-            </div>
+            <div className="mini-tags"><span>Argentina</span><span>Trabajo remoto</span><span>Open to work</span></div>
           </motion.div>
         </div>
+
+        <motion.div className="container capability-grid" {...fadeUp}>
+          <article className="capability-card">
+            <span>01 / PRODUCT</span>
+            <h3>Frontend orientado a producto</h3>
+            <p>Interfaces responsivas, estados claros, performance y experiencia de usuario pensada para uso real.</p>
+          </article>
+          <article className="capability-card">
+            <span>02 / SYSTEMS</span>
+            <h3>Backend, APIs y datos</h3>
+            <p>Servicios, integraciones, autenticación y bases de datos conectando el producto de punta a punta.</p>
+          </article>
+          <article className="capability-card">
+            <span>03 / PRODUCTION</span>
+            <h3>Producción e infraestructura</h3>
+            <p>Deploys, VPS, resolución de incidencias y mirada de sistemas para que el software siga funcionando.</p>
+          </article>
+        </motion.div>
       </section>
 
       <section className="section section-muted" id="experiencia">
@@ -202,9 +195,7 @@ export default function Home() {
                   optimización de procesos. Trabajo en frontend, backend, bases de datos, integraciones,
                   sistemas internos e infraestructura tecnológica.
                 </p>
-                <div className="mini-tags">
-                  <span>JavaScript</span><span>TypeScript</span><span>MySQL</span><span>Azure</span>
-                </div>
+                <div className="mini-tags"><span>JavaScript</span><span>TypeScript</span><span>MySQL</span><span>Azure</span></div>
               </div>
             </motion.article>
 
@@ -218,9 +209,7 @@ export default function Home() {
                   producción: frontend, backend, MySQL, reservas, disponibilidad, integraciones,
                   despliegues y resolución de incidencias.
                 </p>
-                <div className="mini-tags">
-                  <span>Next.js</span><span>React</span><span>Node.js</span><span>MySQL</span>
-                </div>
+                <div className="mini-tags"><span>Next.js</span><span>React</span><span>Node.js</span><span>MySQL</span></div>
               </div>
             </motion.article>
           </div>
@@ -237,6 +226,14 @@ export default function Home() {
 
           <div className="projects-grid">
             <motion.article className="project-card project-featured" {...fadeUp}>
+              <div className="project-architecture-visual">
+                <span className="architecture-label">PLAN V / PRODUCTION ARCHITECTURE</span>
+                <div className="architecture-stack">
+                  <div className="arch-layer arch-layer-one"><small>01</small><strong>Frontend / Next.js</strong></div>
+                  <div className="arch-layer arch-layer-two"><small>02</small><strong>Backend / APIs</strong></div>
+                  <div className="arch-layer arch-layer-three"><small>03</small><strong>MySQL / Integrations</strong></div>
+                </div>
+              </div>
               <div className="project-info">
                 <div className="project-topline"><span>Proyecto en producción</span><span>01</span></div>
                 <h3>Plan V</h3>
@@ -244,13 +241,10 @@ export default function Home() {
                   Plataforma de experiencias y viajes. Trabajo full stack sobre funcionalidades,
                   reservas, disponibilidad, base de datos, integraciones y mantenimiento productivo.
                 </p>
-                <div className="mini-tags">
-                  <span>Next.js</span><span>React</span><span>TypeScript</span><span>Node.js</span><span>MySQL</span>
-                </div>
+                <div className="mini-tags"><span>Next.js</span><span>React</span><span>TypeScript</span><span>Node.js</span><span>MySQL</span></div>
                 <div className="project-links">
-                  <a href="https://www.planificacionv.com/" target="_blank" rel="noreferrer">
-                    Ver sitio <ArrowIcon />
-                  </a>
+                  <a href="https://www.planificacionv.com/" target="_blank" rel="noreferrer">Ver sitio <ArrowIcon /></a>
+                  <a href="https://github.com/facchinn/facchinn/blob/main/PLANV_CASE_STUDY.md" target="_blank" rel="noreferrer">Case study <ArrowIcon /></a>
                   <span className="private-label">Código privado</span>
                 </div>
               </div>
@@ -270,13 +264,9 @@ export default function Home() {
                   Implementaciones y ejercicios del programa de desarrollo web moderno de la University
                   of Helsinki, completado hasta Part 7 con 7 ECTS y calificación 5/5.
                 </p>
-                <div className="mini-tags">
-                  <span>React</span><span>Node.js</span><span>MongoDB</span><span>Playwright</span><span>Zustand</span>
-                </div>
+                <div className="mini-tags"><span>React</span><span>Node.js</span><span>MongoDB</span><span>Playwright</span><span>Zustand</span></div>
                 <div className="project-links">
-                  <a href="https://github.com/facchinn/full-stack-open" target="_blank" rel="noreferrer">
-                    Ver repositorio <ArrowIcon />
-                  </a>
+                  <a href="https://github.com/facchinn/full-stack-open" target="_blank" rel="noreferrer">Ver repositorio <ArrowIcon /></a>
                 </div>
               </div>
             </motion.article>
@@ -289,15 +279,38 @@ export default function Home() {
           <motion.div className="section-heading" {...fadeUp}>
             <p className="section-kicker">04 · Stack</p>
             <h2>Herramientas que uso.</h2>
-            <p>El stack cambia según el problema; estas son las tecnologías con las que más trabajo.</p>
+            <p>Una vista rápida del stack con el que desarrollo productos, servicios y sistemas.</p>
           </motion.div>
-          <motion.div className="stack-grid" {...fadeUp}>
-            {stack.map((item, index) => (
-              <div className="stack-item" key={item}>
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <strong>{item}</strong>
+
+          <motion.div className="skills-visual-grid" {...fadeUp}>
+            {skills.map((item) => (
+              <div className={`skill-card ${item.dark ? 'dark-icon' : ''}`} key={item.name}>
+                <img src={item.icon} alt={`${item.name} logo`} loading="lazy" />
+                <strong>{item.name}</strong>
+                <span>{item.group}</span>
               </div>
             ))}
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="section lab-section" id="lab">
+        <div className="container lab-grid">
+          <motion.div className="lab-copy" {...fadeUp}>
+            <p className="section-kicker">05 · Creative Lab</p>
+            <h2>También experimento con 3D en la web.</h2>
+            <p>
+              Este objeto no es un video ni una imagen renderizada: se dibuja en tiempo real en el navegador
+              con WebGL. Podés arrastrarlo con el mouse para cambiar la cámara mientras continúa animándose.
+            </p>
+            <div className="lab-tech"><span>Three.js</span><span>React Three Fiber</span><span>WebGL</span><span>Interactive 3D</span></div>
+            <div className="lab-note">
+              El objetivo del laboratorio es mostrar capacidad para salir de interfaces tradicionales y trabajar con experiencias visuales interactivas.
+            </div>
+          </motion.div>
+
+          <motion.div {...fadeUp}>
+            <TechScene />
           </motion.div>
         </div>
       </section>
@@ -305,7 +318,7 @@ export default function Home() {
       <section className="section" id="formacion">
         <div className="container education-card">
           <motion.div {...fadeUp}>
-            <p className="section-kicker">05 · Formación</p>
+            <p className="section-kicker">06 · Formación</p>
             <h2>Full Stack Open</h2>
             <p className="education-school">University of Helsinki</p>
           </motion.div>
@@ -313,8 +326,7 @@ export default function Home() {
             <div><strong>7</strong><span>ECTS</span></div>
             <div><strong>5/5</strong><span>Grade</span></div>
             <p>
-              React, Node.js, APIs REST, autenticación, testing, state management y arquitectura de
-              aplicaciones full stack.
+              React, Node.js, APIs REST, autenticación, testing, state management y arquitectura de aplicaciones full stack.
             </p>
           </motion.div>
         </div>
@@ -323,19 +335,19 @@ export default function Home() {
       <section className="contact-section" id="contacto">
         <div className="container contact-inner">
           <motion.div {...fadeUp}>
-            <p className="section-kicker">06 · Contacto</p>
+            <p className="section-kicker">07 · Contacto</p>
             <h2>¿Construimos algo juntos?</h2>
             <p>
               Estoy abierto a oportunidades Full Stack, Frontend y Backend, tanto en equipos de producto
               como en proyectos donde pueda aportar de punta a punta.
             </p>
           </motion.div>
-          <motion.div className="contact-actions" {...fadeUp}>
+          <motion.div className="contact-links-grid" {...fadeUp}>
             <a href="https://www.linkedin.com/in/nazafacchin" target="_blank" rel="noreferrer">
-              LinkedIn <ArrowIcon />
+              <span>LinkedIn<small>Perfil profesional</small></span><ArrowIcon />
             </a>
             <a href="https://github.com/facchinn" target="_blank" rel="noreferrer">
-              GitHub <ArrowIcon />
+              <span>GitHub<small>Código y proyectos</small></span><ArrowIcon />
             </a>
           </motion.div>
         </div>
