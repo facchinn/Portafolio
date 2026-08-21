@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import './planv-preview.css'
 
 export const metadata: Metadata = {
   title: 'Nazareno Facchin | Full Stack Developer',
